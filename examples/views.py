@@ -7,13 +7,19 @@ from bootstrap_modal_forms.generic import (BSModalLoginView,
                                            BSModalReadView,
                                            BSModalDeleteView)
 
-from .forms import BookForm, CustomUserCreationForm, CustomAuthenticationForm
-from .models import Book
+from .forms import BookForm, EditoraForm,CustomUserCreationForm, CustomAuthenticationForm
+from .models import Book, Editora
 
 class Index(generic.ListView):
     model = Book
     context_object_name = 'books'
     template_name = 'index.html'
+
+class Index(generic.ListView):
+    model = Editora
+    context_object_name = 'editoras'
+    template_name = 'index.html'
+
 
 
 class BookCreateView(BSModalCreateView):
@@ -22,6 +28,12 @@ class BookCreateView(BSModalCreateView):
     success_message = 'Sucesso: O Livro foi criado.'
     success_url = reverse_lazy('index')
 
+#Criar Editora
+class EditoraCreateView(BSModalCreateView):
+    template_name = 'examples/create_editora.html'
+    form_class = EditoraForm
+    success_message = 'Sucesso: A Editora foi criada.'
+    success_url = reverse_lazy('index')
 
 class BookUpdateView(BSModalUpdateView):
     model = Book
@@ -55,3 +67,5 @@ class CustomLoginView(BSModalLoginView):
     template_name = 'examples/login.html'
     success_message = 'Sucesso: você efetuou login com êxito.'
     success_url = reverse_lazy('index')
+
+

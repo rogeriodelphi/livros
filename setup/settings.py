@@ -18,7 +18,6 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'examples',
     'tests',
-    'editoras',
 ]
 
 MIDDLEWARE = [

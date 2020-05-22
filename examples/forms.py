@@ -5,8 +5,12 @@ from django.contrib.auth.models import User
 from bootstrap_modal_forms.mixins import PopRequestMixin, CreateUpdateAjaxMixin
 from bootstrap_modal_forms.forms import BSModalForm
 
-from .models import Book
+from .models import Book, Editora
 
+class EditoraForm(BSModalForm):
+    class Meta:
+        model = Editora
+        fields = ['nome', 'cnpj', 'obs']
 
 class BookForm(BSModalForm):
     publication_date = forms.DateField(

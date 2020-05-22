@@ -1,12 +1,30 @@
 from django.db import models
-from editoras .models import Editora
+
+
+
+class Editora (models.Model):
+    nome = models.CharField(max_length=50)
+    cnpj = models.CharField(max_length=14, blank=True)
+    obs = models.TextField()
+
+    class Meta:
+        managed = True
+        db_table = 'Editora'
+        verbose_name = 'Editora'
+        verbose_name_plural = 'Editoras'
+        ordering = ['nome']
+
+    def __str__(self):
+        return self.nome
+
+
 
 class Book(models.Model):
     HARDCOVER = 1
     PAPERBACK = 2
     EBOOK = 3
     BOOK_TYPES = (
-        (HARDCOVER, 'Hardcover'),
+        (HARDCOVER, 'Capa Dura'),
         (PAPERBACK, 'Paperback'),
         (EBOOK, 'E-book'),
     )
@@ -26,3 +44,8 @@ class Book(models.Model):
         verbose_name = 'Book'
         verbose_name_plural = 'Books'
         ordering = ['title']
+
+
+
+
+
