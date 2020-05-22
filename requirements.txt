@@ -1,0 +1,5 @@
+Django==2.1.11
+django-bootstrap-modal-forms==1.4.1
+django-widget-tweaks==1.4.2
+pytz==2020.1
+six==1.14.0
