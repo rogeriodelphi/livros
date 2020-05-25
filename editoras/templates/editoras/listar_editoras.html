@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% include "_modal.html" %}
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col">
+
+                </h4>
+                <p>Crie, leia, atualize e exclua livros no modal Bootstrap.</p>
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <button class="create-editora btn btn-primary" type="button" name="button">
+                            <span class="fa fa-plus mr-2"></span>Cadastra uma Editora</button>
+                    </div>
+                    <div class="col-12 mb-3">
+                        {% if editoras %}
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" scope="col">#</th>
+                                        <th class="text-center" scope="col">nome</th>
+                                        <th class="text-center" scope="col">CNPJ</th>
+                                        <th class="text-center" scope="col">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for editora in editoras %}
+                                    <tr>
+                                        <th class="text-center" scope="row">{{ forloop.counter }}</th>
+                                        <td class="text-center">{{ editora.nome }}</td>
+                                        <td class="text-center">{{ editora.cnpj }}</td>
+                                        <td class="text-center">
+                                            <button type="button" class="read-editora btn btn-sm btn-primary" data-id="{% url 'read_editora' editora.pk %}">
+                                                <span class="fa fa-eye"></span>
+                                            </button>
+                                            <button type="button" class="update-editora btn btn-sm btn-primary" data-id="{% url 'update_editora' editora.pk %}">
+                                                <span class="fa fa-pencil"></span>
+                                            </button>
+                                            <button type="button" class="delete-editora btn btn-sm btn-danger" data-id="{% url 'delete_editora' editora.pk %}">
+                                                <span class="fa fa-trash"></span>
+                                            </button>
+                                            <!--<button type="button" class="delete-editora btn btn-sm btn-danger" data-toggle="modal" data-target="#modal" data-id="{% url 'delete_editora' editora.pk %}"> <span class="fa fa-trash" aria-label="Delete"></span> </button>-->
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        {% else %}
+                            <p class="no-editoras text-primary">Ainda não foram adicionados Editoras.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+{% block extrascripts %}
+    <script type="text/javascript">
+        $(function () {
+            // Log in & Sign up buttons
+            $(".login-btn").modalForm({formURL: "{% url 'login' %}"});
+            $(".signup-btn").modalForm({formURL: "{% url 'signup' %}"});
+
+            // Create editora button
+            $(".create-editora").modalForm({formURL: "{% url 'create_editora' %}", modalID: "#create-modal"});
+
+
+            // Update editora buttons
+            $(".update-editora").each(function () {
+                $(this).modalForm({formURL: $(this).data('id')});
+            });
+
+            // Read editora buttons
+            $(".read-editora").each(function () {
+                $(this).modalForm({formURL: $(this).data('id')});
+            });
+
+            // Delete editora buttons
+            $(".delete-editora").each(function () {
+                $(this).modalForm({formURL: $(this).data('id')});
+            })
+
+            // Hide message
+            $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+                $(".alert").slideUp(500);
+            });
+
+         });
+    </script>
+{% endblock extrascripts %}

@@ -5,18 +5,12 @@ from django.contrib.auth.models import User
 from bootstrap_modal_forms.mixins import PopRequestMixin, CreateUpdateAjaxMixin
 from bootstrap_modal_forms.forms import BSModalForm
 
-from .models import Book
+from .models import Editora
 
-
-class BookForm(BSModalForm):
-    publication_date = forms.DateField(
-        error_messages={'invalid': 'Enter a valid date in YYYY-MM-DD format.'}
-    )
-
+class EditoraForm(BSModalForm):
     class Meta:
-        model = Book
-        exclude = ['timestamp']
-
+        model = Editora
+        fields = ['nome', 'cnpj', 'obs']
 
 class CustomUserCreationForm(PopRequestMixin, CreateUpdateAjaxMixin,
                              UserCreationForm):

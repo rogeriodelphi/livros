@@ -7,8 +7,7 @@
     <div class="container mt-3">
         <div class="row">
             <div class="col">
-                <p class="text-primary">Um plugin jQuery para criar formulários Django AJAX controlados no modal Bootstrap.</p>
-                    <h4>
+                <p class="text-primary">Um plugin jQuery para criar formulários Django AJAX controlados no modal Bootstrap.</p><h4>
                         <strong>1. Formulário de inscrição</strong>
                     </h4>
                 <p>Inscreva-se via modal Bootstrap.</p>
@@ -55,7 +54,7 @@
                                         <th class="text-center" scope="col">Páginas</th>
                                         <th class="text-center" scope="col">Preço ($)</th>
                                         <th class="text-center" scope="col">Editora</th>
-                                        <th class="text-center" scope="col">Ler / Atualizar / Apagar</th>
+                                        <th class="text-center" scope="col">Ações</th>
                                      </tr>
                                 </thead>
                                 <tbody>
@@ -106,27 +105,13 @@
             // Create book button
             $(".create-book").modalForm({formURL: "{% url 'create_book' %}", modalID: "#create-modal"});
 
-            // Criar editora button
-            $(".create-editora").modalForm({formURL: "{% url 'create_editora' %}", modalID: "#create-modal"});
-
             // Update book buttons
             $(".update-book").each(function () {
                 $(this).modalForm({formURL: $(this).data('id')});
             });
 
-            // Atualizar editora buttons
-            $(".update-editora").each(function () {
-                $(this).modalForm({formURL: $(this).data('id')});
-            });
-
-
             // Read book buttons
             $(".read-book").each(function () {
-                $(this).modalForm({formURL: $(this).data('id')});
-            });
-
-            // Ler editora buttons
-            $(".read-editora").each(function () {
                 $(this).modalForm({formURL: $(this).data('id')});
             });
 
@@ -134,12 +119,6 @@
             $(".delete-book").each(function () {
                 $(this).modalForm({formURL: $(this).data('id')});
             })
-
-            // Excluir editora buttons
-            $(".delete-editora").each(function () {
-                $(this).modalForm({formURL: $(this).data('id')});
-            })
-
 
             // Hide message
             $(".alert").fadeTo(2000, 500).slideUp(500, function(){

@@ -1,4 +1,11 @@
-db.sqlite3
 geckodriver.log
 __pycache__
+__pycache__/
+.idea/
+.env
+venv*/
+*.bak
+*.sqlite3
 *.pyc
+db.sqlite3
+venv/

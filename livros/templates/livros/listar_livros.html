@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% include "_modal.html" %}
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col">
+
+                </h4>
+                <p>Crie, leia, atualize e exclua livros no modal Bootstrap.</p>
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <button class="create-livro btn btn-primary" type="button" name="button">
+                            <span class="fa fa-plus mr-2"></span>Cadastra um Livro</button>
+                    </div>
+                    <div class="col-12 mb-3">
+                        {% if livros %}
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" scope="col">#</th>
+                                        <th class="text-left" scope="col">Título</th>
+                                        <th class="text-center" scope="col">Data Publicação</th>
+                                        <th class="text-center" scope="col">ISBN</th>
+                                        <th class="text-center" scope="col">Autor</th>
+                                        <th class="text-center" scope="col">Editora</th>
+                                        <th class="text-center" scope="col">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for livro in livros %}
+                                    <tr>
+                                        <td class="text-center">{{ livro.id }}</td>
+                                        <td class="text-left">{{ livro.titulo }}</td>
+                                        <td class="text-center">{{ livro.data_publicacao | date:'d/m/Y' }}</td>
+                                        <td class="text-center">{{ livro.isbn }}"</td>
+                                        <td class="text-center">{{ livro.autor }}</td>
+                                        <td class="text-center">{{ livro.editora }}</td>
+                                        <td class="text-center">
+                                            <button type="button" class="read-livro btn btn-sm btn-primary" data-id="{% url 'read_livro' livro.pk %}">
+                                                <span class="fa fa-eye"></span>
+                                            </button>
+                                            <button type="button" class="update-livro btn btn-sm btn-primary" data-id="{% url 'update_livro' livro.pk %}">
+                                                <span class="fa fa-pencil"></span>
+                                            </button>
+                                            <button type="button" class="delete-livro btn btn-sm btn-danger" data-id="{% url 'delete_livro' livro.pk %}">
+                                                <span class="fa fa-trash"></span>
+                                            </button>
+                                            <!--<button type="button" class="delete-livro btn btn-sm btn-danger" data-toggle="modal" data-target="#modal" data-id="{% url 'delete_livro' livro.pk %}"> <span class="fa fa-trash" aria-label="Delete"></span> </button>-->
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        {% else %}
+                            <p class="no-livros text-primary">Ainda não foram adicionados livros.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+{% block extrascripts %}
+    <script type="text/javascript">
+        $(function () {
+            // Log in & Sign up buttons
+            $(".login-btn").modalForm({formURL: "{% url 'login' %}"});
+            $(".signup-btn").modalForm({formURL: "{% url 'signup' %}"});
+
+            // Create livro button
+            $(".create-livro").modalForm({formURL: "{% url 'create_livro' %}", modalID: "#create-modal"});
+
+
+            // Update livro buttons
+            $(".update-livro").each(function () {
+                $(this).modalForm({formURL: $(this).data('id')});
+            });
+
+            // Read livro buttons
+            $(".read-livro").each(function () {
+                $(this).modalForm({formURL: $(this).data('id')});
+            });
+
+            // Delete livro buttons
+            $(".delete-livro").each(function () {
+                $(this).modalForm({formURL: $(this).data('id')});
+            })
+
+            // Hide message
+            $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+                $(".alert").slideUp(500);
+            });
+
+         });
+    </script>
+{% endblock extrascripts %}
