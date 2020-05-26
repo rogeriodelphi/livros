@@ -1,13 +1,13 @@
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views import generic
 
-from bootstrap_modal_forms.generic import (BSModalLoginView,
-                                           BSModalCreateView,
+from bootstrap_modal_forms.generic import (BSModalCreateView,
                                            BSModalUpdateView,
                                            BSModalReadView,
                                            BSModalDeleteView)
 
-from .forms import EditoraForm, CustomUserCreationForm, CustomAuthenticationForm
+from .forms import EditoraForm
 from .models import Editora
 
 

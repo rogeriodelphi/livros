@@ -9,13 +9,26 @@ from .models import Livro
 
 
 class LivroForm(BSModalForm):
-    publication_date = forms.DateField(
-        error_messages={'invalid': 'Enter a valid date in YYYY-MM-DD format.'}
+    data_publicacao = forms.DateField(
+        error_messages={'inválida': 'Digite um formato válido para a data, conforme exemplo: DD/MM/AAAA.'}
     )
 
     class Meta:
         model = Livro
         exclude = ['data_lancamento']
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 class CustomUserCreationForm(PopRequestMixin, CreateUpdateAjaxMixin,

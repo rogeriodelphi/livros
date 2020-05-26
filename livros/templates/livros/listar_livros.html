@@ -9,7 +9,7 @@
             <div class="col">
 
                 </h4>
-                <p>Crie, leia, atualize e exclua livros no modal Bootstrap.</p>
+                <h4>Cadastro de Livros</h4><br>
                 <div class="row">
                     <div class="col-12 mb-3">
                         <button class="create-livro btn btn-primary" type="button" name="button">
@@ -22,6 +22,7 @@
                                     <tr>
                                         <th class="text-center" scope="col">#</th>
                                         <th class="text-left" scope="col">Título</th>
+                                        <th class="text-center" scope="col">Tipo</th>
                                         <th class="text-center" scope="col">Data Publicação</th>
                                         <th class="text-center" scope="col">ISBN</th>
                                         <th class="text-center" scope="col">Autor</th>
@@ -34,7 +35,8 @@
                                     <tr>
                                         <td class="text-center">{{ livro.id }}</td>
                                         <td class="text-left">{{ livro.titulo }}</td>
-                                        <td class="text-center">{{ livro.data_publicacao | date:'d/m/Y' }}</td>
+                                        <td class="text-center">{{ livro.tipo_livro }}</td>
+                                        <td class="text-center">{{ livro.data_publicacao | date:'Y' }}</td>
                                         <td class="text-center">{{ livro.isbn }}"</td>
                                         <td class="text-center">{{ livro.autor }}</td>
                                         <td class="text-center">{{ livro.editora }}</td>

@@ -12,13 +12,13 @@ class Livro(models.Model):
         (e_book, 'E-book'),
         (e_pub, 'E-Pub'),
     )
-    titulo = models.CharField(max_length=50)
+    titulo = models.CharField(max_length=60)
     data_publicacao = models.DateField(null=True)
     autor = models.CharField(max_length=30, blank=True)
-    preco = models.DecimalField(max_digits=5, decimal_places=2)
+    preco = models.DecimalField(max_digits=7, decimal_places=2)
     paginas = models.IntegerField(blank=True, null=True)
     tipo_livro = models.PositiveSmallIntegerField(choices=TIPOS_LIVROS)
-    isbn = models.CharField(max_length=15)
+    isbn = models.CharField(max_length=17)
 
     data_lancamento = models.DateField(auto_now_add=True, auto_now=False)
     editora = models.ForeignKey(Editora, on_delete=models.DO_NOTHING)
